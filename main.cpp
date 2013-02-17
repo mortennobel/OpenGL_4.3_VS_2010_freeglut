@@ -171,7 +171,7 @@ int main(int argc, char* argv[]) {
 #if _DEBUG
 	cout << "Register debug " << endl;
 	glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
-    if(glDebugMessageCallback){
+	if(glDebugMessageCallback){
 		glDebugMessageCallback(debugCallbackFunction, nullptr);
 		GLuint unusedIds = 0;
 		glDebugMessageControl(GL_DONT_CARE,

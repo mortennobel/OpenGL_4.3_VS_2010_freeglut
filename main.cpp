@@ -60,7 +60,7 @@ void loadShader(){
 void display() {	
     glClearColor(0.0, 0.0, 0.0, 1.0);
     glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
-	//glClear(GL_DEPTH); // <-- Bug - this trigger a debug callback
+	// glClear(GL_DEPTH); // <-- Bug - this trigger a debug callback
 	const float timeScale = 0.008f;
 	
     glUseProgram(shaderProgram);
@@ -101,9 +101,43 @@ void __stdcall debugCallbackFunction(GLenum source,
 	
 	cout << "---------------------debug-start------------" << endl;
 	cout << "message: "<< message << endl;
-	cout << "type: "<<type << endl;
+	cout << "type: ";
+	switch (type) {
+	case GL_DEBUG_TYPE_ERROR:
+		cout << "ERROR";
+		break;
+	case GL_DEBUG_TYPE_DEPRECATED_BEHAVIOR:
+		cout << "DEPRECATED_BEHAVIOR";
+		break;
+	case GL_DEBUG_TYPE_UNDEFINED_BEHAVIOR:
+		cout << "UNDEFINED_BEHAVIOR";
+		break;
+	case GL_DEBUG_TYPE_PORTABILITY:
+		cout << "PORTABILITY";
+		break;
+	case GL_DEBUG_TYPE_PERFORMANCE:
+		cout << "PERFORMANCE";
+		break;
+	case GL_DEBUG_TYPE_OTHER:
+		cout << "OTHER";
+		break;
+	}
+	cout << endl;
+
 	cout << "id: "<<id << endl;
-	cout << "severity: "<<severity << endl;
+	cout << "severity: ";
+	switch (severity){
+	case GL_DEBUG_SEVERITY_LOW:
+		cout << "LOW";
+		break;
+	case GL_DEBUG_SEVERITY_MEDIUM:
+		cout << "MEDIUM";
+		break;
+	case GL_DEBUG_SEVERITY_HIGH:
+		cout << "HIGH";
+		break;
+	}
+	cout << endl;
 cout << "---------------------debug-end--------------" << endl;
 }
 

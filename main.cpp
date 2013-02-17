@@ -91,7 +91,7 @@ void visible(int vis) {
 		glutIdleFunc(0);
 }
 
-void __stdcall debugCallbackFunction(GLenum source,
+void __stdcall openglCallbackFunction(GLenum source,
                                            GLenum type,
                                            GLuint id,
                                            GLenum severity,
@@ -99,7 +99,7 @@ void __stdcall debugCallbackFunction(GLenum source,
                                            const GLchar* message,
 										   void* userParam){
 	
-	cout << "---------------------debug-start------------" << endl;
+	cout << "---------------------opengl-callback-start------------" << endl;
 	cout << "message: "<< message << endl;
 	cout << "type: ";
 	switch (type) {
@@ -138,7 +138,7 @@ void __stdcall debugCallbackFunction(GLenum source,
 		break;
 	}
 	cout << endl;
-cout << "---------------------debug-end--------------" << endl;
+cout << "---------------------opengl-callback-end--------------" << endl;
 }
 
 int main(int argc, char* argv[]) {
@@ -169,10 +169,10 @@ int main(int argc, char* argv[]) {
 	}
 
 #if _DEBUG
-	cout << "Register debug " << endl;
+	cout << "Register OpenGL debug callback " << endl;
 	glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
 	if(glDebugMessageCallback){
-		glDebugMessageCallback(debugCallbackFunction, nullptr);
+		glDebugMessageCallback(openglCallbackFunction, nullptr);
 		GLuint unusedIds = 0;
 		glDebugMessageControl(GL_DONT_CARE,
  			GL_DONT_CARE,

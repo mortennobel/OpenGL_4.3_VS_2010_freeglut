@@ -60,7 +60,7 @@ void loadShader(){
 void display() {	
 	glClearColor(0.0, 0.0, 0.0, 1.0);
 	glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
-	glClear(GL_DEPTH); // <-- Bug - this trigger a debug callback
+	// glClear(GL_DEPTH); // <-- Bug - this trigger a debug callback
 	const float timeScale = 0.008f;
 	
 	glUseProgram(shaderProgram);
@@ -169,9 +169,9 @@ int main(int argc, char* argv[]) {
 	}
 
 #if _DEBUG
-	cout << "Register OpenGL debug callback " << endl;
-	glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
 	if(glDebugMessageCallback){
+		cout << "Register OpenGL debug callback " << endl;
+		glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
 		glDebugMessageCallback(openglCallbackFunction, nullptr);
 		GLuint unusedIds = 0;
 		glDebugMessageControl(GL_DONT_CARE,

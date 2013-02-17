@@ -171,18 +171,18 @@ int main(int argc, char* argv[]) {
 #if _DEBUG
 	cout << "Register debug " << endl;
 	glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
-    if(glDebugMessageCallback)
+    if(glDebugMessageCallback){
 		glDebugMessageCallback(debugCallbackFunction, nullptr);
+		GLuint unusedIds = 0;
+		glDebugMessageControl(GL_DONT_CARE,
+ 			GL_DONT_CARE,
+ 			GL_DONT_CARE,
+ 			0,
+ 			&unusedIds,
+ 			true);
+	}
 	else
 		cout << "glDebugMessageCallback not available" << endl;
-
-	GLuint unusedIds = 0;
-	glDebugMessageControl(GL_DONT_CARE ,
- 		GL_DONT_CARE ,
- 		GL_DONT_CARE,
- 		0,
- 		&unusedIds,
- 		true);
 #endif
 
 	cout << "OpenGL initialized: OpenGL version: " << glGetString(GL_VERSION) << " GLSL version: " << glGetString(GL_SHADING_LANGUAGE_VERSION) << endl;

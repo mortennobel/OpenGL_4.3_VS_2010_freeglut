@@ -142,18 +142,18 @@ cout << "---------------------debug-end--------------" << endl;
 }
 
 int main(int argc, char* argv[]) {
-    glutInit(&argc, argv);
+	glutInit(&argc, argv);
 	glutInitContextVersion(4, 3);
-    glutInitContextProfile(GLUT_CORE_PROFILE);
-    glutInitContextFlags(GLUT_FORWARD_COMPATIBLE
+	glutInitContextProfile(GLUT_CORE_PROFILE);
+	glutInitContextFlags(GLUT_FORWARD_COMPATIBLE
 #if _DEBUG		
 		| GLUT_DEBUG
 #endif
-		);
+	);
 	glutSetOption(
-        GLUT_ACTION_ON_WINDOW_CLOSE,
-        GLUT_ACTION_GLUTMAINLOOP_RETURNS
-    );
+		GLUT_ACTION_ON_WINDOW_CLOSE,
+		GLUT_ACTION_GLUTMAINLOOP_RETURNS
+	);
 
 	glutInitDisplayMode(GLUT_RGBA|GLUT_DOUBLE|GLUT_DEPTH);
 	glutCreateWindow("OpenGL 4 example");

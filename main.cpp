@@ -19,34 +19,34 @@ GLuint vertexArrayObject,
 
 typedef struct
 {
-    vec4 position;
-    vec4 colour;
+	vec4 position;
+	vec4 colour;
 } Vertex;
 
 void loadShader();
 void display();
 
 void loadBufferData(){
-	 Vertex vertexData[4] = {
-        { vec4(-0.5, -0.5, 0.0, 1.0 ), vec4( 1.0, 0.0, 0.0, 1.0 ) },
-        { vec4(-0.5,  0.5, 0.0, 1.0 ), vec4( 0.0, 1.0, 0.0, 1.0 ) },
-        { vec4( 0.5,  0.5, 0.0, 1.0 ), vec4( 0.0, 0.0, 1.0, 1.0 ) },
-        { vec4( 0.5, -0.5, 0.0, 1.0 ), vec4( 1.0, 1.0, 1.0, 1.0 ) }
-    };
+	Vertex vertexData[4] = {
+		{ vec4(-0.5, -0.5, 0.0, 1.0 ), vec4( 1.0, 0.0, 0.0, 1.0 ) },
+		{ vec4(-0.5,  0.5, 0.0, 1.0 ), vec4( 0.0, 1.0, 0.0, 1.0 ) },
+		{ vec4( 0.5,  0.5, 0.0, 1.0 ), vec4( 0.0, 0.0, 1.0, 1.0 ) },
+		{ vec4( 0.5, -0.5, 0.0, 1.0 ), vec4( 1.0, 1.0, 1.0, 1.0 ) }
+	};
     
-    glGenVertexArrays(1, &vertexArrayObject);
-    glBindVertexArray(vertexArrayObject);
+	glGenVertexArrays(1, &vertexArrayObject);
+	glBindVertexArray(vertexArrayObject);
     
-    glGenBuffers(1, &vertexBuffer);
-    glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
-    glBufferData(GL_ARRAY_BUFFER, 4 * sizeof(Vertex), vertexData, GL_STATIC_DRAW);
+	glGenBuffers(1, &vertexBuffer);
+	glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
+	glBufferData(GL_ARRAY_BUFFER, 4 * sizeof(Vertex), vertexData, GL_STATIC_DRAW);
     
 	const GLuint positionAttributeLocation = 0,
-		colourAttributeLocation = 1;
-    glEnableVertexAttribArray(positionAttributeLocation);
+	colourAttributeLocation = 1;
+	glEnableVertexAttribArray(positionAttributeLocation);
 	glEnableVertexAttribArray(colourAttributeLocation);
-    glVertexAttribPointer(positionAttributeLocation, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const GLvoid *)0);
-    glVertexAttribPointer(colourAttributeLocation  , 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const GLvoid *)sizeof(vec4));
+	glVertexAttribPointer(positionAttributeLocation, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const GLvoid *)0);
+	glVertexAttribPointer(colourAttributeLocation  , 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const GLvoid *)sizeof(vec4));
 }
 
 void loadShader(){
@@ -58,24 +58,24 @@ void loadShader(){
 }
 
 void display() {	
-    glClearColor(0.0, 0.0, 0.0, 1.0);
-    glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
+	glClearColor(0.0, 0.0, 0.0, 1.0);
+	glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
 	// glClear(GL_DEPTH); // <-- Bug - this trigger a debug callback
 	const float timeScale = 0.008f;
 	
-    glUseProgram(shaderProgram);
+	glUseProgram(shaderProgram);
 
-    GLfloat timeValue = glutGet(GLUT_ELAPSED_TIME)*timeScale; 
-    vec2 p( 0.5f * sinf(timeValue), 0.5f * cosf(timeValue) );
-    glUniform2fv(positionUniformLocation, 1, p);
+	GLfloat timeValue = glutGet(GLUT_ELAPSED_TIME)*timeScale; 
+	vec2 p( 0.5f * sinf(timeValue), 0.5f * cosf(timeValue) );
+	glUniform2fv(positionUniformLocation, 1, p);
     
-    glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
+	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
     
 	glutSwapBuffers();
 }
 
 void reshape(int W, int H) {
-    WINDOW_WIDTH = W;
+	WINDOW_WIDTH = W;
 	WINDOW_HEIGHT = H;
 	glViewport(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
 }
@@ -191,7 +191,7 @@ int main(int argc, char* argv[]) {
 	glEnable(GL_DEPTH_TEST);
 
 	loadShader();
-    loadBufferData();
+	loadBufferData();
 
 	glutMainLoop();
 }
